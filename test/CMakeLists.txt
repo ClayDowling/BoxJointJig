@@ -4,7 +4,9 @@ set(TESTPROJECT test-${PROJECT_NAME})
 
 add_executable(${TESTPROJECT}
     test_hardware.cpp
-)
+
+    ../src/hardware.cpp
+    )
 
 target_link_libraries(${TESTPROJECT}
     PRIVATE

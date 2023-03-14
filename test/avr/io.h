@@ -5,6 +5,9 @@
 
 #define _BV(bit) (1 << (bit))
 
+uint8_t bit_is_set(uint8_t port, uint8_t bit);
+uint8_t bit_is_clear(uint8_t port, uint8_t bit);
+
 extern uint8_t DDRD;
 #define DDD0 0
 #define DDD1 1
