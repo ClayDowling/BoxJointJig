@@ -35,5 +35,12 @@ SCENARIO("Hardware initialized") {
     hardware_init();
 
     THEN("limit 1 is set for input") { REQUIRE(bit_is_clear(DDRD, LIMIT_1)); }
+    THEN("limit 2 is set for input") { REQUIRE(bit_is_clear(DDRD, LIMIT_2)); }
+    THEN("advance button is set for input") {
+      REQUIRE(bit_is_clear(DDRD, BTN_ADVANCE));
+    }
+    THEN("return button is set for input") {
+      REQUIRE(bit_is_clear(DDRD, BTN_RETURN));
+    }
   }
 }
