@@ -14,33 +14,38 @@ uint8_t bit_is_set(uint8_t port, uint8_t bit) { return port & _BV(bit); }
 uint8_t bit_is_clear(uint8_t port, uint8_t bit) { return !(port & _BV(bit)); }
 
 SCENARIO("Hardware initialized") {
-  clear_registers();
+  GIVEN("clean hardware registers") {
+    clear_registers();
 
-  GIVEN("initialized hardware") {
-    hardware_init();
+    WHEN("initialized hardware") {
+      hardware_init();
 
-    THEN("step pin is set for output") {
-      REQUIRE(bit_is_set(DDRD, MOTOR_STEP));
-    }
-    THEN("step direction is set for output") {
-      REQUIRE(bit_is_set(DDRD, MOTOR_DIRECTION));
+      THEN("step pin is set for output") {
+        REQUIRE(bit_is_set(DDRD, MOTOR_STEP));
+      }
+      THEN("step direction is set for output") {
+        REQUIRE(bit_is_set(DDRD, MOTOR_DIRECTION));
+      }
     }
   }
 
-  GIVEN("dirty registers before hardware init") {
+  GIVEN("dirty registers") {
     DDRD |= _BV(LIMIT_1);
     DDRD |= _BV(LIMIT_2);
     DDRD |= _BV(BTN_ADVANCE);
     DDRD |= _BV(BTN_RETURN);
-    hardware_init();
 
-    THEN("limit 1 is set for input") { REQUIRE(bit_is_clear(DDRD, LIMIT_1)); }
-    THEN("limit 2 is set for input") { REQUIRE(bit_is_clear(DDRD, LIMIT_2)); }
-    THEN("advance button is set for input") {
-      REQUIRE(bit_is_clear(DDRD, BTN_ADVANCE));
-    }
-    THEN("return button is set for input") {
-      REQUIRE(bit_is_clear(DDRD, BTN_RETURN));
+    WHEN("hardware initialized") {
+      hardware_init();
+
+      THEN("limit 1 is set for input") { REQUIRE(bit_is_clear(DDRD, LIMIT_1)); }
+      THEN("limit 2 is set for input") { REQUIRE(bit_is_clear(DDRD, LIMIT_2)); }
+      THEN("advance button is set for input") {
+        REQUIRE(bit_is_clear(DDRD, BTN_ADVANCE));
+      }
+      THEN("return button is set for input") {
+        REQUIRE(bit_is_clear(DDRD, BTN_RETURN));
+      }
     }
   }
 }
