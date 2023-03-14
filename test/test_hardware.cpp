@@ -18,7 +18,7 @@ SCENARIO("Hardware initialized") {
     clear_registers();
 
     WHEN("initialized hardware") {
-      hardware_init();
+      Hardware hdware;
 
       THEN("step pin is set for output") {
         REQUIRE(bit_is_set(DDRD, MOTOR_STEP));
@@ -36,7 +36,7 @@ SCENARIO("Hardware initialized") {
     DDRD |= _BV(BTN_RETURN);
 
     WHEN("hardware initialized") {
-      hardware_init();
+      Hardware hware2;
 
       THEN("limit 1 is set for input") { REQUIRE(bit_is_clear(DDRD, LIMIT_1)); }
       THEN("limit 2 is set for input") { REQUIRE(bit_is_clear(DDRD, LIMIT_2)); }
@@ -46,6 +46,18 @@ SCENARIO("Hardware initialized") {
       THEN("return button is set for input") {
         REQUIRE(bit_is_clear(DDRD, BTN_RETURN));
       }
+    }
+  }
+}
+
+SCENARIO("step right") {
+  GIVEN("initialized hardware") {
+    Hardware hdware;
+
+    WHEN("step right called") {
+      hdware.step_right();
+
+      THEN("motor step pin is pulsed") {}
     }
   }
 }
