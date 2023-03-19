@@ -38,3 +38,11 @@ The screw should not be advanced if Limit Switch 2 is closed. This can damage th
 When the Return button is pressed, it moves the carrier continuously left until Limit Switch 1 is closed.
 
 At each step Limit Switch 1 should be checked to ensure that it is not closed, to avoid damaging the machine.
+
+## Microcontroller
+
+Because they are cheap an ubiquitous, this will be driven by an [ATMega328p](https://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-7810-Automotive-Microcontrollers-ATmega328P_Datasheet.pdf) microcontroller. It is possible that once the final form of the device is know, the machine could be driven by a smaller controller like an ATtiny45, but such devices are limited to six input/output pins, and even in this earliest stage the machine is using two outputs and four inputs.
+
+## Switch Debouncing
+
+For industrial control debouncing is particularly important. As a first pass, debounce will be managed by an RC net debouncer and use of pull-up resistors on the input pins, meaning that a closed circuit will give a LOW signal on the input pin. Information on how to set the ports for input with a pull-up resistor is on page 59 of the guide linked above.
