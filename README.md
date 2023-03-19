@@ -45,4 +45,4 @@ Because they are cheap an ubiquitous, this will be driven by an [ATMega328p](htt
 
 ## Switch Debouncing
 
-For industrial control debouncing is particularly important. As a first pass, debounce will be managed by an RC net debouncer and use of pull-up resistors on the input pins, meaning that a closed circuit will give a LOW signal on the input pin. Information on how to set the ports for input with a pull-up resistor is on page 59 of the guide linked above.
+For industrial control debouncing is particularly important. As a first pass, debounce will be managed by an [RC net debouncer](https://hackaday.com/2015/12/09/embed-with-elliot-debounce-your-noisy-buttons-part-i/) and use of pull-up resistors on the input pins, meaning that a closed circuit will give a LOW signal on the input pin. Information on how to set the ports for input with a pull-up resistor is on page 59 of the guide linked above. 
